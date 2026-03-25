@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Orbit</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌑</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/orbit.css" />
+</head>
+<body>
+  <canvas id="stars"></canvas>
+  <div class="moon-orb"></div>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="nav-logo">
+      <span class="logo-icon">🌑</span>
+      <span class="logo-text">ORBIT</span>
+    </div>
+    <div class="nav-links">
+      <a href="#" class="nav-link active" data-page="home">Home</a>
+      <a href="#" class="nav-link" data-page="proxy">Proxy</a>
+      <a href="#" class="nav-link" data-page="games">Games</a>
+      <a href="#" class="nav-link" data-page="apps">Apps</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-cloak" onclick="toggleCloak()" title="Tab Cloak">⚡</button>
+      <button class="btn-blank" onclick="aboutBlank()" title="About:Blank">🔲</button>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <!-- HOME -->
+    <section class="page active" id="page-home">
+      <div class="hero">
+        <div class="hero-eyebrow">DARK SIDE OF THE WEB</div>
+        <h1 class="hero-title">
+          <span class="title-line">Navigate</span>
+          <span class="title-line accent">Beyond</span>
+          <span class="title-line">Limits.</span>
+        </h1>
+        <p class="hero-sub">Fast. Private. Untouchable.</p>
+        <div class="hero-cta">
+          <button class="btn-primary" onclick="goToPage('proxy')">Launch Proxy</button>
+          <button class="btn-ghost" onclick="goToPage('games')">Browse Games</button>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num">Scramjet</span><span class="stat-label">Proxy Engine</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">50+</span><span class="stat-label">Games</span></div>
+          <div class="stat-divider"></div>
+          <div class="stat"><span class="stat-num">Wisp</span><span class="stat-label">Transport</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROXY -->
+    <section class="page" id="page-proxy">
+      <div class="proxy-container">
+        <div class="proxy-header">
+          <h2 class="section-title">Proxy</h2>
+          <p class="section-sub">Enter any URL and browse freely.</p>
+        </div>
+        <div class="search-bar">
+          <span class="search-icon">🌐</span>
+          <input
+            type="text"
+            id="proxy-input"
+            class="search-input"
+            placeholder="Search or enter a URL..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button class="search-btn" onclick="launchProxy()">GO</button>
+        </div>
+        <div class="proxy-tips">
+          <span class="tip">⚡ Powered by Scramjet — try youtube.com, twitter.com, reddit.com</span>
+        </div>
+        <div class="engine-badge">
+          <span class="badge">🚀 Scramjet</span>
+          <span class="badge">🔒 Wisp/libcurl</span>
+          <span class="badge">✅ CAPTCHA support</span>
+        </div>
+        <div class="iframe-container" id="proxy-frame-container" style="display:none;">
+          <div class="iframe-bar">
+            <span id="frame-url-display">about:blank</span>
+            <button onclick="closeFrame()">✕ Close</button>
+          </div>
+          <iframe id="proxy-iframe"
+            sandbox="allow-forms allow-modals allow-orientation-lock allow-pointer-lock allow-popups allow-scripts allow-same-origin"
+            allow="fullscreen"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- GAMES -->
+    <section class="page" id="page-games">
+      <div class="content-container">
+        <div class="content-header">
+          <h2 class="section-title">Games</h2>
+          <p class="section-sub">Play anything. No restrictions.</p>
+          <input type="text" class="filter-input" placeholder="Search games..." oninput="filterCards(this.value, 'games-grid')" />
+        </div>
+        <div class="cards-grid" id="games-grid"></div>
+      </div>
+    </section>
+
+    <!-- APPS -->
+    <section class="page" id="page-apps">
+      <div class="content-container">
+        <div class="content-header">
+          <h2 class="section-title">Apps</h2>
+          <p class="section-sub">All your favourite sites, unblocked.</p>
+          <input type="text" class="filter-input" placeholder="Search apps..." oninput="filterCards(this.value, 'apps-grid')" />
+        </div>
+        <div class="cards-grid" id="apps-grid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Scramjet SW registration -->
+  <script src="/baremux/index.js"></script>
+  <script src="/libcurl/index.js"></script>
+  <script src="/assets/js/orbit.js"></script>
+</body>
+</html>

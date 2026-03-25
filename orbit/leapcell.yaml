@@ -1,0 +1,21 @@
+# Leapcell deployment config
+# Docs: https://leapcell.io/docs
+
+type: service
+name: orbit
+
+build:
+  type: dockerfile
+
+run:
+  command: npm start
+
+resources:
+  instance: free
+
+envs:
+  - name: PORT
+    value: "8080"
+
+http:
+  port: 8080
